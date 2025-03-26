@@ -53,7 +53,7 @@ The testnet test workflow demonstrates the following:
 #### Prerequisites
 
 - Foundry installed
-- Access to Porcini testnet
+- testnet config
 - The executor's private key
 
 #### Setup
@@ -71,7 +71,7 @@ export EXECUTOR_PRIVATE_KEY=0xYOUR_PRIVATE_KEY_HERE
 ```
 
 This will:
-- Connect to the Porcini testnet
+- Connect to the EDUCHAIN testnet
 - Transfer half of the LLEDU tokens from the executor to the target wallet (0xDC17577cb8A3e647c49a8d4717D6819D28932bAf)
 - Register both company and freelancer wallets
 - Create a project using the target wallet
@@ -79,14 +79,16 @@ This will:
 - Approve the submission
 - Display token balances throughout the process
 
-#### Contracts on Testnet
+#### Testnet Config
 
-- LLEDU Token: 0xbff8ffa1e000bfd712e0a97583e169aa307544e4
-- Project Ledger: 0xaB18cAc913d4C29670078fAa0d23DAf1b506Ab0C
+-
+- RPC_URL=https://rpc.open-campus-codex.gelato.digital
+- CHAIN_ID=656476
+
 
 ### Running Real Testnet Workflow
 
-This project includes scripts to run transactions on the actual Porcini testnet, not in a simulated environment. The workflow demonstrates:
+This project includes scripts to run transactions on the actual EDUCHAIN testnet, not in a simulated environment. The workflow demonstrates:
 
 1. Transferring half of LLEDU tokens from the executor wallet to the company wallet
 2. Creating a project using the company wallet
@@ -97,7 +99,7 @@ This project includes scripts to run transactions on the actual Porcini testnet,
 #### Prerequisites
 
 - Foundry installed
-- Access to Porcini testnet
+- Access to EDUCHAIN testnet
 - Private keys for all three wallets:
   - Executor (the wallet that deployed the contracts)
   - Company (the wallet that will create the project)
@@ -133,7 +135,7 @@ Execute the complete workflow on the real testnet:
 
 This script will:
 1. Check for required private keys and load them if available
-2. Connect to the Porcini testnet
+2. Connect to the EDUCHAIN testnet
 3. Execute the workflow with real transactions
 4. Show token balances at each step
 
@@ -222,7 +224,7 @@ If you're having trouble with project IDs, use the following:
 
 To view the event details:
 1. Watch the transaction hash output after running step 2
-2. Open that transaction on the Porcini block explorer
+2. Open that transaction on the EDUCHAIN block explorer
 3. Look for the "ProjectCreated" event in the transaction logs
 4. Use the project ID from that event when submitting
 
@@ -260,8 +262,8 @@ But the actual project ID saved in the contract (found in the event logs) is dif
 
 #### Wallets & Contracts
 
-- **LLEDU Token**: 0x29668302bf1E11FDc0CC2E01aAEC1e10966F779e
-- **Project Ledger**: 0xc3F785e76e0E07daa7FdE8c2f190bcb8f11a429F
+- **SMART_CONTRACT_ADDRESS** : 0xc3F785e76e0E07daa7FdE8c2f190bcb8f11a429F
+- **LLEDU_TOKEN_ADDRESS** : 0x29668302bf1E11FDc0CC2E01aAEC1e10966F779e
 - **Executor Wallet**: 0xB92749d0769EB9fb1B45f2dE0CD51c97aa220f93
 - **Company Wallet**: 0xDC17577cb8A3e647c49a8d4717D6819D28932bAf
 - **Freelancer Wallet**: 0xB75682F7bBa3caB29972452DA8737AebFf684e39
