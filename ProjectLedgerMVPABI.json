@@ -1,0 +1,529 @@
+[
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_executor",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "allowed",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "required",
+                "type": "uint256"
+            }
+        ],
+        "type": "error",
+        "name": "AllowanceIsLesserThanRequired"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "token",
+                "type": "address"
+            }
+        ],
+        "type": "error",
+        "name": "TokenNotAllowed"
+    },
+    {
+        "inputs": [],
+        "type": "error",
+        "name": "UnauthorizedCaller"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "projectId",
+                "type": "bytes32",
+                "indexed": true
+            },
+            {
+                "internalType": "address",
+                "name": "owner",
+                "type": "address",
+                "indexed": true
+            },
+            {
+                "internalType": "address",
+                "name": "token",
+                "type": "address",
+                "indexed": false
+            },
+            {
+                "internalType": "uint256",
+                "name": "reward",
+                "type": "uint256",
+                "indexed": false
+            }
+        ],
+        "type": "event",
+        "name": "ProjectCreated",
+        "anonymous": false
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "projectId",
+                "type": "bytes32",
+                "indexed": true
+            },
+            {
+                "internalType": "bytes32",
+                "name": "submissionId",
+                "type": "bytes32",
+                "indexed": true
+            },
+            {
+                "internalType": "address",
+                "name": "freelancer",
+                "type": "address",
+                "indexed": false
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256",
+                "indexed": false
+            }
+        ],
+        "type": "event",
+        "name": "RewardPayout",
+        "anonymous": false
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "submissionId",
+                "type": "bytes32",
+                "indexed": true
+            },
+            {
+                "internalType": "address",
+                "name": "approver",
+                "type": "address",
+                "indexed": true
+            }
+        ],
+        "type": "event",
+        "name": "SubmissionApproved",
+        "anonymous": false
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "submissionId",
+                "type": "bytes32",
+                "indexed": true
+            },
+            {
+                "internalType": "bytes32",
+                "name": "projectId",
+                "type": "bytes32",
+                "indexed": true
+            },
+            {
+                "internalType": "address",
+                "name": "freelancer",
+                "type": "address",
+                "indexed": true
+            }
+        ],
+        "type": "event",
+        "name": "SubmissionCreated",
+        "anonymous": false
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "user",
+                "type": "address",
+                "indexed": true
+            },
+            {
+                "internalType": "enum ProjectLedgerMVP.Role",
+                "name": "role",
+                "type": "uint8",
+                "indexed": false
+            }
+        ],
+        "type": "event",
+        "name": "UserRegistered",
+        "anonymous": false
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "_submissionId",
+                "type": "bytes32"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "name": "approveSubmission",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ]
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "walletAddress",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "_submissionId",
+                "type": "bytes32"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "name": "approveSubmissionFor",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ]
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_token",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_totalReward",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "name": "createProject",
+        "outputs": [
+            {
+                "internalType": "bytes32",
+                "name": "projectId",
+                "type": "bytes32"
+            }
+        ]
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "walletAddress",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "_token",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_totalReward",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "name": "createProjectFor",
+        "outputs": [
+            {
+                "internalType": "bytes32",
+                "name": "projectId",
+                "type": "bytes32"
+            }
+        ]
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "_projectId",
+                "type": "bytes32"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "name": "createSubmission",
+        "outputs": [
+            {
+                "internalType": "bytes32",
+                "name": "submissionId",
+                "type": "bytes32"
+            }
+        ]
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "walletAddress",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "_projectId",
+                "type": "bytes32"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "name": "createSubmissionFor",
+        "outputs": [
+            {
+                "internalType": "bytes32",
+                "name": "submissionId",
+                "type": "bytes32"
+            }
+        ]
+    },
+    {
+        "inputs": [],
+        "stateMutability": "view",
+        "type": "function",
+        "name": "executor",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ]
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_user",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "name": "isCompany",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ]
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_user",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "name": "isFreelancer",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ]
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "",
+                "type": "bytes32"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "name": "projects",
+        "outputs": [
+            {
+                "internalType": "bytes32",
+                "name": "projectId",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "address",
+                "name": "projectOwner",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "token",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "totalReward",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bool",
+                "name": "rewardClaimed",
+                "type": "bool"
+            }
+        ]
+    },
+    {
+        "inputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "name": "registerAsCompany"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "walletAddress",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "name": "registerAsCompanyFor"
+    },
+    {
+        "inputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "name": "registerAsFreelancer"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "walletAddress",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "name": "registerAsFreelancerFor"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_token",
+                "type": "address"
+            },
+            {
+                "internalType": "bool",
+                "name": "_status",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "name": "setTokenAllowed"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "",
+                "type": "bytes32"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "name": "submissions",
+        "outputs": [
+            {
+                "internalType": "bytes32",
+                "name": "submissionId",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "projectId",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "address",
+                "name": "freelancer",
+                "type": "address"
+            },
+            {
+                "internalType": "bool",
+                "name": "approved",
+                "type": "bool"
+            },
+            {
+                "internalType": "bool",
+                "name": "paid",
+                "type": "bool"
+            }
+        ]
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "name": "tokenList",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ]
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "name": "userData",
+        "outputs": [
+            {
+                "internalType": "enum ProjectLedgerMVP.Role",
+                "name": "role",
+                "type": "uint8"
+            }
+        ]
+    }
+]

@@ -1,2 +1,10 @@
 [profile.ci.fuzz]
 runs = 10_000
+[profile.default]
+src = "src"
+out = "out"
+solc_version = "0.8.20"
+remappings = ['@openzeppelin=lib/openzeppelin-contracts']
+gas_limit = 20000000
+gas_price = 50000000000
+# Higher gas settings to avoid "intrinsic gas too low" errors

@@ -1,2 +1,9 @@
 cache/
 out/
+.env.local
+.env.*
+cache
+broadcast
+lib/
+rough
+node_modules
